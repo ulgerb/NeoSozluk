@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+
+
+
+{% block body %}
+<br><br><br>
+<div class="row justify-content-center">
+    <div class="col-4">
+        <form method="POST">
+            {% csrf_token %}
+            <h3 class="card-title">Kayıt Ol</h3><br>
+            <div class="form-floating mb-3">
+                <input type="text" class="form-control" name="name" id="floatingInput" placeholder="Ad">
+                <label for="floatingInput">Ad</label>
+            </div>
+            <div class="form-floating mb-3">
+                <input type="text" class="form-control" name="surname" id="floatingInput" placeholder="soyad">
+                <label for="floatingInput">Soyad</label>
+            </div>
+            <div class="form-floating mb-3">
+                <input type="email" class="form-control" name="email" id="floatingInput" placeholder="Email">
+                <label for="floatingInput">Email</label>
+            </div>
+            <div class="form-floating mb-3">
+                <input type="text" class="form-control" name="username" id="floatingInput" placeholder="Kullanıcı Adı">
+                <label for="floatingInput">Kullanıcı Adı</label>
+            </div>
+            <div class="form-floating">
+                <input type="password" class="form-control" name="password1" id="floatingPassword"
+                    placeholder="Password">
+                <label for="floatingPassword">Şifre Oluştur</label>
+            </div><br>
+            <div class="form-floating">
+                <input type="password" class="form-control" name="password2" id="floatingPassword"
+                    placeholder="Password">
+                <label for="floatingPassword">Tekrar Şifre</label>
+            </div>
+            <br>
+            <button class="btn btn-primary" type="submit">Kayıt Ol</button>
+            <br><br>
+            {% if hata %}
+            <div class="alert alert-danger" role="alert">
+                {{ hata }}
+            </div>
+            {% endif %}
+
+        </form>
+        <br><br>
+    </div>
+</div>
+
+{% endblock body %}

@@ -1,0 +1,68 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block body %}
+    <main class="px-3">
+        <h1>{{ postdetail.title }}</h1>
+        <p class="lead">{{ postdetail.text }}</p>
+        <p class="lead">{{ postdetail.yazar }}</p>
+        <p class="lead">{{ postdetail.new_date }}</p>
+
+        <p class="lead">
+            <a href="#" class="btn btn-lg btn-secondary fw-bold border-white bg-white">asdasd</a>
+        </p>
+
+        <br><br><br>
+        <h2>Yorumlar</h2>
+        <hr>
+        {% for i in postdetail.comments.all %}
+        <div class="col-11 mb-3">
+            <div class="h-100 p-5 bg-light border rounded-3">
+                <h2>{{ i.name }}</h2>
+                <p>{{ i.text }}</p>
+                <p><small>{{ i.com_date }}</small></p>
+            </div>
+        </div>
+        
+        {% endfor %}
+
+        
+        {% if user.is_authenticated %}
+            <br><br>
+            <h2>Yorum Oluştur</h2>
+            <hr>
+            <div class="row">
+                <div class="col-8">
+            
+                    <form action="" method="POST">
+                        {% csrf_token %}
+                        {{ form|crispy }}
+                        <input class="btn btn-primary" type="submit" value="Yorumu paylaş">
+                    </form>
+                </div>
+            </div>
+            <br><br><br>
+        
+            
+        {% else %}
+            <br><br>
+            <h2>Yorum Oluştur</h2>
+            <hr>
+            <div class="row">
+                <div class="col-8">
+                    <a href="/register/">
+                        Yorum apmak için kayıt ol
+                    </a>
+                </div>
+            </div>
+            <br><br><br>
+            
+        {% endif %}
+            
+        
+        
+            
+        
+    </main>
+{% endblock body %}
+    
